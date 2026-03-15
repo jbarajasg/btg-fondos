@@ -1,7 +1,3 @@
-// ================================================
-// fund-list.component.ts
-// ================================================
-
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FundCardComponent } from '../fund-card/fund-card.component';
 import { SubscribeModalComponent } from '../subscribe-modal/subscribe-modal.component';

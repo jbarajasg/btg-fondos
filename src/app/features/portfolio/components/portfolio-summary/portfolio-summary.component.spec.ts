@@ -1,7 +1,3 @@
-// ================================================
-// portfolio-summary.component.spec.ts
-// ================================================
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PortfolioSummaryComponent } from './portfolio-summary.component';
 import { Router } from '@angular/router';
@@ -36,7 +32,6 @@ describe('PortfolioSummaryComponent', () => {
   let userServiceMock: jest.Mocked<Partial<UserService>>;
   let routerMock: jest.Mocked<Partial<Router>>;
 
-  // Signals reutilizables entre tests
   const activeFundsSignal = signal<ActiveFund[]>([mockActiveFund]);
   const balanceSignal = signal<number>(425000);
 
@@ -115,7 +110,7 @@ describe('PortfolioSummaryComponent', () => {
 
   it('debe navegar a /funds al hacer click en ver fondos', () => {
     component.goToFunds();
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/funds']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/fondos']);
   });
 
   it('debe mostrar 0% cuando no hay fondos activos', () => {

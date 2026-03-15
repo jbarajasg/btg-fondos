@@ -28,6 +28,14 @@ describe('NavbarComponent', () => {
           useValue: {
             balance: balanceSignal,
             activeFunds: activeFundsSignal,
+            user: signal({
+              name: 'Diomedes Díaz',
+              email: 'diomedes.diaz@email.com',
+              phone: '',
+              balance: 500000,
+              activeFunds: [],
+              notificationMethod: 'email',
+            }),
           },
         },
       ],

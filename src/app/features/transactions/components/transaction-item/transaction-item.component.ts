@@ -1,8 +1,3 @@
-// ================================================
-// transaction-item.component.ts
-// Componente DUMB — muestra una transacción
-// ================================================
-
 import { Component, input, computed } from '@angular/core';
 import { Transaction } from '../../../../core/models/fund.model';
 import { CopCurrencyPipe } from '../../../../shared/pipes/cop-currency-pipe';
@@ -17,7 +12,6 @@ import { CopCurrencyPipe } from '../../../../shared/pipes/cop-currency-pipe';
 export class TransactionItemComponent {
   transaction = input.required<Transaction>();
 
-  // Computed para los estilos según el tipo de transacción
   isSubscription = computed(() => this.transaction().type === 'subscription');
 
   amountClass = computed(() => (this.isSubscription() ? 'text-red-600' : 'text-green-600'));
@@ -30,7 +24,6 @@ export class TransactionItemComponent {
     this.isSubscription() ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700',
   );
 
-  // Formatea la fecha en español
   formattedDate = computed(() => {
     return new Intl.DateTimeFormat('es-CO', {
       day: '2-digit',

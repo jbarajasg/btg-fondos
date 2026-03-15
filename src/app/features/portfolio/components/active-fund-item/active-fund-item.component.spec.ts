@@ -1,7 +1,3 @@
-// ================================================
-// active-fund-item.component.spec.ts
-// ================================================
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActiveFundItemComponent } from './active-fund-item.component';
 import { ActiveFund } from '../../../../core/models/fund.model';

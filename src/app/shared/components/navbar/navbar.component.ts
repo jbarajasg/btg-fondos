@@ -21,8 +21,8 @@ export class NavbarComponent {
   userInitial = computed(() => this.userService.user().name.charAt(0).toUpperCase());
 
   navLinks = [
-    { path: '/funds', label: 'Fondos', icon: '📈' },
-    { path: '/portfolio', label: 'Mi portafolio', icon: '💼' },
-    { path: '/transactions', label: 'Historial', icon: '📋' },
+    { path: '/fondos', label: 'Fondos', icon: '📈' },
+    { path: '/portafolio', label: 'Mi portafolio', icon: '💼' },
+    { path: '/transacciones', label: 'Historial', icon: '📋' },
   ];
 }

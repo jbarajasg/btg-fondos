@@ -1,7 +1,3 @@
-// ================================================
-// transactions.routes.ts
-// ================================================
-
 import { Routes } from '@angular/router';
 
 export const TRANSACTIONS_ROUTES: Routes = [

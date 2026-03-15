@@ -1,7 +1,3 @@
-// ================================================
-// transaction-list.component.spec.ts
-// ================================================
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TransactionListComponent } from './transaction-list.component';
 import { Transaction } from '../../../../core/models/fund.model';

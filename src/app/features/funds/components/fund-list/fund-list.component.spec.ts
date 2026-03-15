@@ -1,14 +1,10 @@
-// ================================================
-// fund-list.component.spec.ts
-// Zoneless — usa jest.useFakeTimers() en lugar de fakeAsync/tick
-// ================================================
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FundListComponent } from './fund-list.component';
 import { of, throwError } from 'rxjs';
 import { Fund, Transaction } from '../../../../core/models/fund.model';
 import { FundService } from '../../../../core/services/fund.service';
 import { UserService } from '../../../../core/services/user.service';
+import { signal } from '@angular/core';
 
 const mockFund: Fund = {
   id: 1,
@@ -50,6 +46,15 @@ describe('FundListComponent', () => {
       balance: jest.fn().mockReturnValue(500000) as any,
       notificationMethod: jest.fn().mockReturnValue('email') as any,
       isSubscribed: jest.fn().mockReturnValue(false),
+      user: signal({
+        id: 1,
+        name: 'Diomedes Díaz',
+        email: 'diomedes.diaz@email.com',
+        phone: '',
+        balance: 500000,
+        activeFunds: [],
+        notificationMethod: 'email' as const,
+      }),
     };
 
     await TestBed.configureTestingModule({
@@ -78,7 +83,9 @@ describe('FundListComponent', () => {
   });
 
   it('debe mostrar mensaje de éxito al suscribirse', () => {
-    component.onSubscribe(mockFund);
+    component.onSubscribeClick(mockFund);
+    component.onSubscribeConfirm('email');
+
     expect(component['message']()).toEqual({
       text: `Te has suscrito exitosamente a ${mockFund.name}`,
       type: 'success',
@@ -89,7 +96,8 @@ describe('FundListComponent', () => {
     fundServiceMock.subscribeFund = jest
       .fn()
       .mockReturnValue(throwError(() => new Error('No tiene saldo suficiente')));
-    component.onSubscribe(mockFund);
+    component.onSubscribeClick(mockFund);
+    component.onSubscribeConfirm('email');
     expect(component['message']()).toEqual({
       text: 'No tiene saldo suficiente',
       type: 'error',
@@ -97,7 +105,7 @@ describe('FundListComponent', () => {
   });
 
   it('debe limpiar el mensaje después de 4 segundos', () => {
-    component.onSubscribe(mockFund);
+    component.onSubscribeClick(mockFund);
     jest.advanceTimersByTime(4000);
     expect(component['message']()).toBeNull();
   });
@@ -111,7 +119,7 @@ describe('FundListComponent', () => {
   });
 
   it('debe marcar el fondo como loading al suscribirse', () => {
-    component.onSubscribe(mockFund);
+    component.onSubscribeClick(mockFund);
     expect(component.isLoadingFund(mockFund.id)).toBe(false);
   });
 });

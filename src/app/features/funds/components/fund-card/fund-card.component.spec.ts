@@ -21,7 +21,6 @@ describe('FundCardComponent', () => {
     fixture = TestBed.createComponent(FundCardComponent);
     component = fixture.componentInstance;
 
-    // Establecemos el input requerido antes de cada test
     fixture.componentRef.setInput('fund', MOCK_FUND);
     fixture.detectChanges();
   });
@@ -72,7 +71,6 @@ describe('FundCardComponent', () => {
     fixture.componentRef.setInput('isSubscribed', false);
     fixture.detectChanges();
 
-    // Espiamos el output para verificar que se emite
     let emittedFund: Fund | undefined;
     component.subscribe.subscribe((fund: Fund) => (emittedFund = fund));
 
