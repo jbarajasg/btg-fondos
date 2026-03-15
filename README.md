@@ -30,6 +30,7 @@ src/app/
     ├── funds/               ← Lista y suscripción de fondos
     ├── portfolio/           ← Fondos activos del usuario
     ├── transactions/        ← Historial de movimientos
+```
 
 ## Funcionalidades
 
