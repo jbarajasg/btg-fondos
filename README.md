@@ -16,7 +16,7 @@ Aplicación web interactiva para la gestión de fondos de inversión (FPV/FIC) d
 
 El proyecto implementa la arquitectura **Core / Shared / Feature** recomendada.
 
-````
+```
 src/app/
 ├── core/                    ← Infraestructura singleton
 │   ├── interceptors/        ← Interceptor HTTP global
@@ -30,6 +30,7 @@ src/app/
     ├── funds/               ← Lista y suscripción de fondos
     ├── portfolio/           ← Fondos activos del usuario
     ├── transactions/        ← Historial de movimientos
+```
 
 ## Funcionalidades
 
@@ -80,6 +81,7 @@ http://localhost:4200
 ```
 
 > Para correr en un puerto diferente:
+>
 > ```bash
 > ng serve --port 3000
 > ```
@@ -96,4 +98,4 @@ npm test
 
 # Ver reporte de cobertura
 npm run test:coverage
-````
+```
