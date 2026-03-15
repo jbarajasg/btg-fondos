@@ -1,0 +1,67 @@
+<nav class="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a routerLink="/funds" class="flex items-center gap-2">
+        <div
+          class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-content-center text-white font-bold text-sm flex justify-center"
+        >
+          B
+        </div>
+        <span class="font-bold text-gray-900 text-lg">BTG Fondos</span>
+      </a>
+      <div class="hidden sm:flex items-center gap-1">
+        @for (link of navLinks; track link.path) {
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="bg-orange-50 text-orange-600"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all duration-200"
+          >
+            <span class="text-base">{{ link.icon }}</span>
+            {{ link.label }}
+
+            @if (link.path === '/portfolio' && activeFundsCount() > 0) {
+              <span
+                class="bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+              >
+                {{ activeFundsCount() }}
+              </span>
+            }
+          </a>
+        }
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="text-right hidden sm:block">
+          <p class="text-xs text-gray-500">Saldo disponible</p>
+          <p class="text-sm font-bold text-gray-900">
+            {{ balance() | copCurrency }}
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <div
+            class="w-9 h-9 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-sm"
+          >
+            {{ userInitial() }}
+          </div>
+          <div class="hidden sm:flex flex-col">
+            <span class="text-xs font-medium text-gray-900 leading-tight">
+              {{ userName() }}
+            </span>
+            <span class="text-xs text-gray-400">Inversionista</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex sm:hidden items-center gap-1 pb-2 overflow-x-auto">
+      @for (link of navLinks; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="bg-orange-50 text-orange-600"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-600 whitespace-nowrap hover:bg-gray-50 transition-all duration-200"
+        >
+          {{ link.icon }} {{ link.label }}
+        </a>
+      }
+    </div>
+  </div>
+</nav>

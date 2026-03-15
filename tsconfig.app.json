@@ -4,11 +4,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "esModuleInterop": true,
     "types": []
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "setup-jest.ts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

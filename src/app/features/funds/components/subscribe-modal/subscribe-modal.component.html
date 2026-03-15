@@ -1,0 +1,115 @@
+<div
+  class="modal-backdrop fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+  (click)="onBackdropClick($event)"
+>
+  <div
+    class="bg-white rounded-2xl shadow-xl w-full max-w-md flex flex-col gap-6 p-6 animate-[fadeIn_.2s_ease]"
+  >
+    <div class="flex items-start justify-between">
+      <div>
+        <h2 class="text-lg font-bold text-gray-900">Confirmar suscripción</h2>
+        <p class="text-sm text-gray-500 mt-1">{{ fund().name }}</p>
+      </div>
+      <button class="text-gray-400 hover:text-gray-600 transition-colors p-1" (click)="onClose()">
+        ✕
+      </button>
+    </div>
+
+    <div class="bg-gray-50 rounded-xl p-4 flex flex-col gap-3">
+      <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">Categoría</span>
+        <span class="badge" [class]="fund().category === 'FPV' ? 'badge-fpv' : 'badge-fic'">
+          {{ fund().category }}
+        </span>
+      </div>
+      <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">Monto a invertir</span>
+        <span class="text-sm font-semibold text-gray-900">
+          {{ fund().minimumAmount | copCurrency }}
+        </span>
+      </div>
+      <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">Saldo disponible</span>
+        <span class="text-sm font-semibold text-gray-900">
+          {{ userBalance() | copCurrency }}
+        </span>
+      </div>
+
+      <div class="border-t border-gray-200"></div>
+
+      <div class="flex justify-between items-center">
+        <span class="text-sm font-medium text-gray-700">Saldo restante</span>
+        <span
+          [class]="
+            'text-sm font-bold ' + (hasSufficientBalance() ? 'text-green-600' : 'text-red-600')
+          "
+        >
+          {{ remainingBalance() | copCurrency }}
+        </span>
+      </div>
+    </div>
+    @if (!hasSufficientBalance()) {
+      <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
+        No tienes saldo suficiente para suscribirte a este fondo.
+      </div>
+    }
+
+    @if (hasSufficientBalance()) {
+      <div class="flex flex-col gap-3">
+        <label class="text-sm font-medium text-gray-700"> Método de notificación </label>
+        <div class="flex gap-3">
+          <label
+            class="flex-1 flex items-center gap-3 border rounded-lg p-3 cursor-pointer transition-all duration-200 has-[:checked]:border-orange-400 has-[:checked]:bg-orange-50"
+          >
+            <input
+              type="radio"
+              [formControl]="notificationControl"
+              value="email"
+              class="accent-orange-500"
+            />
+            <div>
+              <p class="text-sm font-medium text-gray-900">Email</p>
+              <p class="text-xs text-gray-500">Notificación por correo</p>
+            </div>
+          </label>
+
+          <label
+            class="flex-1 flex items-center gap-3 border rounded-lg p-3 cursor-pointer transition-all duration-200 has-[:checked]:border-orange-400 has-[:checked]:bg-orange-50"
+          >
+            <input
+              type="radio"
+              [formControl]="notificationControl"
+              value="sms"
+              class="accent-orange-500"
+            />
+            <div>
+              <p class="text-sm font-medium text-gray-900">SMS</p>
+              <p class="text-xs text-gray-500">Notificación por mensaje</p>
+            </div>
+          </label>
+        </div>
+      </div>
+    }
+
+    <div class="flex gap-3">
+      <button class="btn-secondary flex-1" [disabled]="isLoading()" (click)="onClose()">
+        Cancelar
+      </button>
+
+      <button
+        class="btn-confirm flex-1"
+        [disabled]="isLoading() || !hasSufficientBalance()"
+        (click)="onConfirm()"
+      >
+        @if (isLoading()) {
+          <span
+            class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+          ></span>
+          Procesando...
+        } @else {
+          Confirmar
+        }
+      </button>
+    </div>
+  </div>
+</div>
