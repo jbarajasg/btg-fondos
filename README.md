@@ -1,59 +1,99 @@
-# BtgFondos
+# BTG Fondos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.2.
+Aplicación web interactiva para la gestión de fondos de inversión (FPV/FIC) de BTG Pactual. Permite al usuario visualizar fondos disponibles, suscribirse, cancelar su participación y consultar el historial de transacciones.
 
-## Development server
+## 🚀 Tecnologías
 
-To start a local development server, run:
+| Tecnología       | Versión | Uso                                   |
+| ---------------- | ------- | ------------------------------------- |
+| **Angular**      | 21.x    | Framework principal                   |
+| **TypeScript**   | 5.x     | Tipado estático                       |
+| **Tailwind CSS** | v4      | Estilos y diseño responsivo           |
+| **Jest**         | 29.x    | Pruebas unitarias                     |
+| **RxJS**         | 7.x     | Programación reactiva con Observables |
+
+## 🏗️ Arquitectura
+
+El proyecto implementa la arquitectura **Core / Shared / Feature** recomendada.
+
+````
+src/app/
+├── core/                    ← Infraestructura singleton
+│   ├── interceptors/        ← Interceptor HTTP global
+│   ├── services/            ← UserService, FundService
+│   ├── models/              ← Interfaces TypeScript
+│   └── mocks/               ← Datos simulados
+├── shared/                  ← Reutilizable entre features
+│   ├── components/          ← Navbar.
+│   └── pipes/               ← CopCurrencyPipe
+└── features/                ← Módulos lazy por dominio
+    ├── funds/               ← Lista y suscripción de fondos
+    ├── portfolio/           ← Fondos activos del usuario
+    ├── transactions/        ← Historial de movimientos
+
+## Funcionalidades
+
+- Visualizar la lista de los 5 fondos disponibles
+- Suscribirse a un fondo si cumple con el monto mínimo
+- Cancelar la participación en un fondo
+- Ver el saldo actualizado en tiempo real
+- Seleccionar método de notificación (email o SMS)
+- Historial completo de transacciones
+- Mensajes de error si no hay saldo suficiente
+
+## 📦 Requisitos previos
+
+Antes de instalar el proyecto asegúrate de tener:
+
+- **Node.js** v18 o superior → [descargar](https://nodejs.org)
+- **Angular CLI** v21
+
+```bash
+npm install -g @angular/cli
+```
+
+---
+
+## ⚙️ Instalación
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/jbarajasg/btg-fondos.git
+cd btg-fondos
+
+# 2. Instalar dependencias
+npm install
+```
+
+---
+
+## ▶️ Correr el proyecto
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La aplicación estará disponible en:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+> Para correr en un puerto diferente:
+> ```bash
+> ng serve --port 3000
+> ```
+
+---
+
+## Pruebas unitarias
+
+El proyecto usa **Jest** como framework de pruebas.
 
 ```bash
-ng generate --help
-```
+# Correr todos los tests
+npm test
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# Ver reporte de cobertura
+npm run test:coverage
+````
