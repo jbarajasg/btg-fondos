@@ -1,20 +1,15 @@
-<!-- ================================================
-  portfolio-summary.component.html
-  ================================================ -->
-
 <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8">
-
-  <!-- Cabecera -->
   <div>
     <h1 class="text-2xl font-bold text-gray-900">Mi portafolio</h1>
     <p class="text-sm text-gray-500 mt-1">
-      {{ userService.activeFunds().length }} fondo{{ userService.activeFunds().length !== 1 ? 's' : '' }} activo{{ userService.activeFunds().length !== 1 ? 's' : '' }}
+      {{ userService.activeFunds().length }} fondo{{
+        userService.activeFunds().length !== 1 ? 's' : ''
+      }}
+      activo{{ userService.activeFunds().length !== 1 ? 's' : '' }}
     </p>
   </div>
 
-  <!-- Resumen de saldo -->
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
     <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
       <span class="text-xs text-gray-500 font-medium">Saldo disponible</span>
       <p class="text-2xl font-bold text-gray-900 mt-1">
@@ -31,31 +26,29 @@
 
     <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
       <span class="text-xs text-gray-500 font-medium">% Invertido</span>
-      <p class="text-2xl font-bold text-gray-900 mt-1">
-        {{ investedPercentage() }}%
-      </p>
-      <!-- Barra de progreso -->
+      <p class="text-2xl font-bold text-gray-900 mt-1">{{ investedPercentage() }}%</p>
       <div class="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
         <div
           class="h-full bg-orange-400 rounded-full transition-all duration-500"
-          [style.width.%]="investedPercentage()">
-        </div>
+          [style.width.%]="investedPercentage()"
+        ></div>
       </div>
     </div>
-
   </div>
 
-  <!-- Mensaje de éxito o error -->
   @if (message()) {
-    <div [class]="'rounded-lg px-4 py-3 text-sm font-medium ' +
-      (message()!.type === 'success'
-        ? 'bg-green-50 text-green-700 border border-green-200'
-        : 'bg-red-50 text-red-700 border border-red-200')">
+    <div
+      [class]="
+        'rounded-lg px-4 py-3 text-sm font-medium ' +
+        (message()!.type === 'success'
+          ? 'bg-green-50 text-green-700 border border-green-200'
+          : 'bg-red-50 text-red-700 border border-red-200')
+      "
+    >
       {{ message()!.text }}
     </div>
   }
 
-  <!-- Fondos activos -->
   @if (userService.activeFunds().length) {
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       @for (fund of userService.activeFunds(); track fund.fundId) {
@@ -68,10 +61,10 @@
     </div>
   }
 
-  <!-- Estado vacío -->
   @if (!userService.activeFunds().length) {
-    <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-12
-                flex flex-col items-center gap-4 text-center">
+    <div
+      class="bg-white rounded-xl border border-gray-100 shadow-sm p-12 flex flex-col items-center gap-4 text-center"
+    >
       <span class="text-5xl">💼</span>
       <div>
         <p class="text-gray-900 font-semibold">No tienes fondos activos</p>
@@ -79,10 +72,7 @@
           Explora los fondos disponibles y comienza a invertir
         </p>
       </div>
-      <button class="btn-primary" (click)="goToFunds()">
-        Ver fondos disponibles
-      </button>
+      <button class="btn-primary" (click)="goToFunds()">Ver fondos disponibles</button>
     </div>
   }
-
 </div>

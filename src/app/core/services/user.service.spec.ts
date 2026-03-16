@@ -1,15 +1,9 @@
-// ================================================
-// user.service.spec.ts
-// Pruebas unitarias del UserService
-// ================================================
-
 import { TestBed } from '@angular/core/testing';
 import { UserService } from './user.service';
 
 describe('UserService', () => {
   let service: UserService;
 
-  // Antes de cada prueba se crea una instancia limpia del servicio
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(UserService);
@@ -43,7 +37,7 @@ describe('UserService', () => {
       fundId: 1,
       fundName: 'FPV_BTG_PACTUAL_RECAUDADORA',
       subscribedAmount: 75000,
-      subscribedAt: new Date().toISOString()
+      subscribedAt: new Date().toISOString(),
     };
 
     service.addActiveFund(activeFund);
@@ -56,7 +50,7 @@ describe('UserService', () => {
       fundId: 1,
       fundName: 'FPV_BTG_PACTUAL_RECAUDADORA',
       subscribedAmount: 75000,
-      subscribedAt: new Date().toISOString()
+      subscribedAt: new Date().toISOString(),
     };
 
     service.addActiveFund(activeFund);
@@ -69,15 +63,15 @@ describe('UserService', () => {
       fundId: 2,
       fundName: 'FPV_BTG_PACTUAL_ECOPETROL',
       subscribedAmount: 125000,
-      subscribedAt: new Date().toISOString()
+      subscribedAt: new Date().toISOString(),
     };
 
     service.addActiveFund(activeFund);
-   expect(service.isSubscribed(2)).toBe(true);
+    expect(service.isSubscribed(2)).toBe(true);
   });
 
   it('debe retornar false si el usuario no está suscrito a un fondo', () => {
-   expect(service.isSubscribed(99)).toBe(false);
+    expect(service.isSubscribed(99)).toBe(false);
   });
 
   it('debe retornar true si tiene saldo suficiente', () => {

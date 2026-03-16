@@ -72,6 +72,9 @@
         },
         "test": {
           "builder": "@angular-builders/jest:run"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

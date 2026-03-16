@@ -1,11 +1,6 @@
-<!-- ================================================
-  active-fund-item.component.html
-  ================================================ -->
-
-<div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5
-            flex flex-col gap-4 hover:shadow-md transition-all duration-200">
-
-  <!-- Nombre del fondo -->
+<div
+  class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex flex-col gap-4 hover:shadow-md transition-all duration-200"
+>
   <div class="flex items-start justify-between gap-3">
     <h3 class="text-sm font-semibold text-gray-900 leading-tight">
       {{ activeFund().fundName }}
@@ -13,7 +8,6 @@
     <span class="badge badge-success flex-shrink-0">Activo</span>
   </div>
 
-  <!-- Monto invertido y fecha -->
   <div class="flex flex-col gap-2">
     <div class="flex justify-between items-center">
       <span class="text-xs text-gray-500">Monto invertido</span>
@@ -27,18 +21,14 @@
     </div>
   </div>
 
-  <!-- Botón cancelar -->
-  <button
-    class="btn-danger w-full"
-    [disabled]="isLoading()"
-    (click)="onCancel()">
+  <button class="btn-danger w-full" [disabled]="isLoading()" (click)="onCancel()">
     @if (isLoading()) {
-      <span class="w-4 h-4 border-2 border-white border-t-transparent
-                   rounded-full animate-spin"></span>
+      <span
+        class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+      ></span>
       Procesando...
     } @else {
       Cancelar suscripción
     }
   </button>
-
 </div>
